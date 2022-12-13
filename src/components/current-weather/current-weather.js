@@ -8,7 +8,7 @@ const CurrentWeather = ({ data }) => {
     <article className="widget">
       <div className="weatherIcon">
         <img
-          src={`/icons/${data.weather[0].icon}.png`}
+          src={`public/icons/${data.weather[0].icon}.png`}
           alt={data.weather[0].description}
         ></img>
       </div>
