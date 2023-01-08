@@ -1,6 +1,7 @@
 import "./current-weather.css";
 
 const CurrentWeather = ({ data }) => {
+  console.log(data);
   const day = new Date().toLocaleString("en-US", { day: "2-digit" });
   const month = new Date().toLocaleString("en-US", { month: "long" });
 
@@ -8,7 +9,7 @@ const CurrentWeather = ({ data }) => {
     <article className="widget">
       <div className="weatherIcon">
         <img
-          src={`public/icons/${data.weather[0].icon}.png`}
+          src={`${process.env.PUBLIC_URL}/icons/${data.weather[0].icon}.png`}
           alt={data.weather[0].description}
         ></img>
       </div>

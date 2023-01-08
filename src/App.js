@@ -2,115 +2,114 @@ import "./App.css";
 import Search from "./components/search/search";
 import CurrentWeather from "./components/current-weather/current-weather";
 import Forecast from "./components/forecast/forecast";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { WEATHER_API_KEY, WEATHER_API_URL, FORECAST_API_URL } from "./api";
-import { render } from "@testing-library/react";
+import { ImLocation } from "react-icons/im";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [lati, setLati] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [status, setStatus] = useState(true);
-  const [currentPosition, setCurrentPosition] = useState(null);
-  const [currentActive, setCurrentActive] = useState(false);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [city, setCity] = useState(null);
 
-  const getLocation = () => {
-    //find current lat and long
-    setCurrentActive(true);
-    if (!navigator.geolocation) {
-      setStatus("Geolocation is not supported by your browser");
+  const getCoords = async (searchData) => {
+    setLatitude(null);
+    setLongitude(null);
+    setCity(null);
+    if (searchData) {
+      // console.log(searchData);
+      setLatitude(searchData.searchData.latitude);
+      setLongitude(searchData.searchData.longitude);
+      setCity(searchData.searchData.label);
     } else {
-      setStatus("ok");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setStatus(null);
-          setLati(position.coords.latitude);
-          setLng(position.coords.longitude);
-        },
-        () => {
-          setStatus("Unable to retrieve your location");
-        }
-      );
-      //fetching weather api after finding geolocation
-      fetch(
-        `${WEATHER_API_URL}lat=${lati}&lon=${lng}&appid=${WEATHER_API_KEY}&units=metric`
-      ).then(async (response) => {
-        const currentResponse = await response.json(); //
-        setCurrentPosition({ city: currentResponse.name, ...currentResponse });
-        //  console.log(currentPosition);   //it fetches from the api correctly the weather at my location
-        console.log(currentPosition);
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
       });
+      setLatitude(pos.coords.latitude);
+      setLongitude(pos.coords.longitude);
     }
   };
 
-  const handleOnSearchChange = (searchData) => {
-    setCurrentActive(false);
-    //a function to console log the results which we call on <Search />
-    console.log(searchData); //we get the following every time we search for a new city  {value: '51.507222222 -0.1275', label: 'London,GB'}
-    const [lat, lon] = searchData.value.split(" "); //we need the lat and lon from searchData
+  useEffect(() => {
+    if (latitude && longitude) {
+      const currentWeatherFetch = fetch(
+        //fetching the weather of the city we searched using the lat and lon of the specific city
+        `${WEATHER_API_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`
+      );
+      const forecastFetch = fetch(
+        `${FORECAST_API_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`
+      );
 
-    const currentWeatherFetch = fetch(
-      //fetching the weather of the city we searched using the lat and lon of the specific city
-      `${WEATHER_API_URL}lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
-    );
-    const forecastFetch = fetch(
-      `${FORECAST_API_URL}lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
-    );
+      Promise.all([currentWeatherFetch, forecastFetch]) //order is important, we first fetch current weather
+        .then(async (response) => {
+          const weatherResponse = await response[0].json(); //
+          const forecastResponse = await response[1].json();
+          setCurrentWeather({ city, ...weatherResponse });
+          setForecast({ city, ...forecastResponse });
+        })
+        .catch((err) => console.log(err));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [latitude]);
 
-    Promise.all([currentWeatherFetch, forecastFetch]) //order is important, we first fetch current weather
-      .then(async (response) => {
-        const weatherResponse = await response[0].json(); //
-        const forecastResponse = await response[1].json();
-        setCurrentWeather({ city: searchData.label, ...weatherResponse });
-        setForecast({ city: searchData.label, ...forecastResponse });
-      })
-      .catch((err) => console.log.log(err));
-  };
   console.log(currentWeather);
 
-  if (currentActive) {
-    return (
-      <div className="App">
-        <Search onSearchChange={handleOnSearchChange} />
-        {currentPosition === null ? (
-          <div>Loading</div>
-        ) : (
-          currentWeather && <CurrentWeather data={currentPosition} />
-        )}
-        {/* {currentWeather && <CurrentWeather data={currentPosition} />}{" "} */}
+  const handleOnSearchChange = (searchData) => {
+    getCoords({ searchData });
+  };
 
-        {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
-        <button
-          onClick={() => {
-            getLocation();
-          }}
-        >
-          Get Location
-        </button>
-        {/* <Forecast data={forecast}    /> */}
-      </div>
-    );
-  } else {
-    return (
-      <div className="App">
-        <Search onSearchChange={handleOnSearchChange} />
+  // if (currentActive) {
+  return (
+    <div className="App">
+      <Search onSearchChange={handleOnSearchChange} />
+      <div className="flex justify-between items-center">
         {currentWeather && <CurrentWeather data={currentWeather} />}
-        {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
-        {/* To show current weather <CurrentWeather data={currentPosition} */}
-        <button
-          onClick={() => {
-            getLocation();
-          }}
-        >
-          Get Location
-        </button>
 
-        {/* <Forecast data={forecast}    /> */}
+        {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
+        {/* {JSON.stringify(forecast, null, 2)} */}
+        {forecast && <Forecast data={forecast} />}
       </div>
-    );
-  }
+
+      <button
+        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        onClick={() => {
+          getCoords();
+        }}
+      >
+        <ImLocation />
+      </button>
+      {/* <Forecast data={forecast}    /> */}
+
+      {/* <Forecast data={forecast}    /> */}
+    </div>
+  );
+  // }
+  // else {
+  //   return (
+  //     <div className="App">
+  //       <Search onSearchChange={handleOnSearchChange} />
+  //       <div className="flex justify-between items-center">
+  //         {currentWeather && <CurrentWeather data={currentWeather} />}
+  //         {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
+  //         {/* To show current weather <CurrentWeather data={currentPosition} */}
+  //         {/* <Forecast data={forecast} /> */}
+  //       </div>
+  //       <button
+  //         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+  //         onClick={() => {
+  //           getCoords();
+  //         }}
+  //       >
+  //         <ImLocation />
+  //       </button>
+  //       {/* <ForecastTest data={forecast} /> */}
+
+  //       <Forecast data={forecast} />
+  //     </div>
+  //   );
+  // }
 }
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { geoApiOptions, GEO_API_URL } from "../../api";
+import { ImLocation } from "react-icons/im";
 
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
@@ -17,7 +18,8 @@ const Search = ({ onSearchChange }) => {
           options: response.data.map((city) => {
             //map to the cities that start with the letters we type
             return {
-              value: `${city.latitude} ${city.longitude}`, //from these cities, get the latitude and longitude
+              latitude: city.latitude, //from these cities, get the latitude and longitude
+              longitude: city.longitude, //from these cities, get the latitude and longitude
               label: `${city.name}, ${city.countryCode}`, //label: city name and the country code
             };
           }),
@@ -31,13 +33,25 @@ const Search = ({ onSearchChange }) => {
   };
 
   return (
-    <AsyncPaginate
-      placeholder="Search for city"
-      debounceTimeout={600}
-      value={search}
-      onChange={handleOnChange} // when we select our city =>  onChange()
-      loadOptions={loadOptions} //shows suggestions of cities while we type
-    />
+    <div className="">
+      <AsyncPaginate
+        className="select  "
+        placeholder="Search for city"
+        debounceTimeout={600}
+        value={search}
+        theme={(theme) => ({
+          ...theme,
+          borderRadius: 9,
+          colors: {
+            ...theme.colors,
+            primary25: "rgba(178, 171, 171, 0.3)",
+            primary: "rgba(178, 171, 171, 0.5)",
+          },
+        })}
+        onChange={handleOnChange} // when we select our city =>  onChange()
+        loadOptions={loadOptions} //shows suggestions of cities while we type
+      />
+    </div>
   );
 };
 
