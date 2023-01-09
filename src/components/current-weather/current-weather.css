@@ -34,10 +34,7 @@ h5 {
   height: 300px;
   width: 450px;
   position: relative;
-  margin-top: 14rem;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: 6rem;
   background: rgba(178, 171, 171, 0.3);
   border-radius: 16px;
 }

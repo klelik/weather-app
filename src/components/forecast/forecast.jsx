@@ -26,8 +26,8 @@ const Forecast = ({ data }) => {
   console.log(data.list);
   return (
     <>
-      <label className="title">Daily</label>
-      <Accordion allowZeroExpanded>
+      <label className="title mt-[3rem] mb-[3rem] text-[2rem]">Daily Forecast</label>
+      <Accordion allowZeroExpanded className="flex justify-space-between">
         {data.list.slice(0, 7).map((item, idx) => (
           <AccordionItem key={idx}>
             <AccordionItemHeading>
@@ -38,13 +38,12 @@ const Forecast = ({ data }) => {
                     className="icon-small"
                     alt="weather"
                   />
-                  <label className="day">{forecastDays[idx]}</label>
+                  <label className="day">{forecastDays[idx]} : </label>
                   <label className="description">
-                    {item.weather[0].description}
+                    {item.weather[0].description} -
                   </label>
                   <label className="min-max">
                     {Math.round(item.main.temp_max)}°C /
-                    {Math.round(item.main.temp_min)}°C
                   </label>
                 </div>
               </AccordionItemButton>

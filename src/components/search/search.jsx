@@ -33,9 +33,9 @@ const Search = ({ onSearchChange }) => {
   };
 
   return (
-    <div className="">
+    <div className="flex justify-end ">
       <AsyncPaginate
-        className="select  "
+        className="select w-[95%] "
         placeholder="Search for city"
         debounceTimeout={600}
         value={search}

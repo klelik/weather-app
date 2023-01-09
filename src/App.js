@@ -63,8 +63,18 @@ function App() {
   // if (currentActive) {
   return (
     <div className="App">
+      <div className=" relative">
+      <button
+        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 left-0 border border-gray-400 rounded shadow absolute"
+        onClick={() => {
+          getCoords();
+        }}
+      >
+        <ImLocation />
+      </button>
       <Search onSearchChange={handleOnSearchChange} />
-      <div className="flex justify-between items-center">
+      </div>
+      <div className="flex justify-between items-center justify-center flex-col">
         {currentWeather && <CurrentWeather data={currentWeather} />}
 
         {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
@@ -72,14 +82,7 @@ function App() {
         {forecast && <Forecast data={forecast} />}
       </div>
 
-      <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        onClick={() => {
-          getCoords();
-        }}
-      >
-        <ImLocation />
-      </button>
+
       {/* <Forecast data={forecast}    /> */}
 
       {/* <Forecast data={forecast}    /> */}
