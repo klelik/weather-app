@@ -1,3 +1,6 @@
+*{
+  transition: all .3s ease-in-out;
+}
 .weather-card .card-content {
   padding-bottom: 16px;
 }
@@ -19,10 +22,10 @@ div{
     justify-content: center;
     margin-bottom: 12px;
     position: relative;
+
 }
 
 img{
-  margin-right: 20px;
   width: 62;
   height: 62;
 }
@@ -36,4 +39,28 @@ img{
   font-size: 18px;
   line-height: 1.22;
   text-align: center;
+}
+.forecastItem{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+width: 15rem;
+
+transition: all .3s ease-in-out;
+}
+
+.description{
+    text-transform: capitalize;
+
+}
+.acordionPanel{
+  transition: all .3s ease-in-out;
+
+}
+.acordionWrap{
+  padding-bottom: 1.5rem;
 }
