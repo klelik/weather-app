@@ -63,9 +63,9 @@ function App() {
   // if (currentActive) {
   return (
     <div className="App">
-      <div className=" relative">
+      <div className=" flex flex-row justify-center ">
       <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 left-0 border border-gray-400 rounded shadow absolute"
+        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 left-0 border border-gray-400 rounded shadow "
         onClick={() => {
           getCoords();
         }}

@@ -38,7 +38,10 @@ h5 {
   background: rgba(178, 171, 171, 0.3);
   border-radius: 16px;
 }
-
+.widget:hover{
+  -webkit-transform: scale(1.1) perspective(1500px) rotateY(20deg);
+  transform: scale(1.1) perspective(1500px) rotateY(20deg);
+}
 .weatherIcon {
   background: rgba(178, 171, 171, 0.3);
   height: 70%;

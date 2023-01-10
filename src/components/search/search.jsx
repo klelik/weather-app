@@ -33,25 +33,18 @@ const Search = ({ onSearchChange }) => {
   };
 
   return (
-    <div className="flex justify-end ">
       <AsyncPaginate
-        className="select w-[95%] "
+        className="select  "
         placeholder="Search for city"
         debounceTimeout={600}
         value={search}
         theme={(theme) => ({
           ...theme,
-          borderRadius: 9,
-          colors: {
-            ...theme.colors,
-            primary25: "rgba(178, 171, 171, 0.3)",
-            primary: "rgba(178, 171, 171, 0.5)",
-          },
+          borderRadius: 4,
         })}
         onChange={handleOnChange} // when we select our city =>  onChange()
         loadOptions={loadOptions} //shows suggestions of cities while we type
       />
-    </div>
   );
 };
 
