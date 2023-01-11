@@ -9,7 +9,7 @@ const CurrentWeather = ({ data }) => {
     <article className="widget">
       <div className="weatherIcon">
         <img
-          src={`${process.env.PUBLIC_URL}/icons/${data.weather[0].icon}.png`}
+          src={`${process.env.PUBLIC_URL}/icons/${data.weather[0].icon}.svg`}
           alt={data.weather[0].description}
         ></img>
       </div>

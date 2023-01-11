@@ -34,13 +34,18 @@ const Search = ({ onSearchChange }) => {
 
   return (
       <AsyncPaginate
-        className="select  "
+        className="select w-[100%] oundedr-f"
         placeholder="Search for city"
         debounceTimeout={600}
         value={search}
         theme={(theme) => ({
           ...theme,
           borderRadius: 4,
+          colors: {
+            ...theme.colors,
+            primary25: "rgba(178, 171, 171, 0.3)",
+            primary: "rgba(178, 171, 171, 0.5)",
+          },
         })}
         onChange={handleOnChange} // when we select our city =>  onChange()
         loadOptions={loadOptions} //shows suggestions of cities while we type

@@ -26,12 +26,10 @@ const Forecast = ({ data }) => {
   console.log(data.list);
   return (
     <>
-      <label className="title mt-[3rem] mb-[3rem] text-[2rem] text-[white]">
-        Daily Forecast
-      </label>
+
       <Accordion
         allowZeroExpanded
-        className="acordionWrap flex justify-space-between gap-5"
+        className="accordionWrap flex justify-space-between gap-5"
       >
         {data.list.slice(0, 7).map((item, idx) => (
           <AccordionItem
@@ -46,7 +44,7 @@ const Forecast = ({ data }) => {
                   </label>
 
                   <img
-                    src={`${process.env.PUBLIC_URL}/icons/${item.weather[0].icon}.png`}
+                    src={`${process.env.PUBLIC_URL}/icons/${item.weather[0].icon}.svg`}
                     className="icon-small"
                     alt="weather"
                   />
