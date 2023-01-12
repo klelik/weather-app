@@ -38,7 +38,19 @@ h5 {
   background: rgba(178, 171, 171, 0.3);
   border-radius: 16px;
 }
-.widget:hover{
+
+@media (max-width: 650px) {
+  .widget {
+    width: 350px;
+  }
+  .widget .description {
+    margin-left: 25px;
+  }
+  .widget .city {
+    margin-left: 25px;
+  }
+}
+.widget:hover {
   -webkit-transform: scale(1.1) perspective(1500px) rotateY(20deg);
   transform: scale(1.1) perspective(1500px) rotateY(20deg);
 }

@@ -2,6 +2,8 @@ import "./current-weather.css";
 
 const CurrentWeather = ({ data }) => {
   console.log(data);
+  console.log(data.weather[0].icon);
+
   const day = new Date().toLocaleString("en-US", { day: "2-digit" });
   const month = new Date().toLocaleString("en-US", { month: "long" });
 
@@ -27,7 +29,7 @@ const CurrentWeather = ({ data }) => {
         </h5>
       </div>
     </article>
+    
   );
 };
-
 export default CurrentWeather;

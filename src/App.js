@@ -60,19 +60,21 @@ function App() {
     getCoords({ searchData });
   };
 
+
+
   // if (currentActive) {
   return (
     <div className="App">
       <div className="flex justify-between gap-1 items-center">
-      <button
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 left-0 border border-gray-400 rounded shadow "
-        onClick={() => {
-          getCoords();
-        }}
-      >
-        <ImLocation />
-      </button>
-      <Search onSearchChange={handleOnSearchChange} />
+        <button
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 left-0 border border-gray-400 rounded shadow "
+          onClick={() => {
+            getCoords();
+          }}
+        >
+          <ImLocation />
+        </button>
+        <Search onSearchChange={handleOnSearchChange} />
       </div>
       <div className="flex justify-between items-center justify-center flex-col">
         {currentWeather && <CurrentWeather data={currentWeather} />}
@@ -80,14 +82,10 @@ function App() {
         {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
         {/* {JSON.stringify(forecast, null, 2)} */}
         <label className="title mt-[3rem] mb-[3rem] text-[2rem] text-[white]">
-        Daily Forecast
-      </label>
-        <div className="flex flex-col items-center overflow-auto w-[50%] p-10" >
-        {forecast && <Forecast data={forecast} />}
-        </div>
-        
+          Daily Forecast
+        </label>
+          {forecast && <Forecast data={forecast} />}
       </div>
-
 
       {/* <Forecast data={forecast}    /> */}
 

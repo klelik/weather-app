@@ -23,9 +23,26 @@ const Forecast = ({ data }) => {
   const forecastDays = WEEK_DAYS.slice(dayInAWeek, WEEK_DAYS.length).concat(
     WEEK_DAYS.slice(0, dayInAWeek)
   );
+
+    const scrollable = document.querySelector("#scrollable");
+  // console.log(scrollable);
+
+    // if (scrollable) {
+    //   scrollable.addEventListener("wheel" , event => {
+    //     console.log("klement1");
+    
+    //     if (event.wheelDelta > 0) {
+    //       this.scrollLeft -= 100;
+    //       console.log("klement");
+    //     } else {
+    //       this.scrollLeft += 100;
+    //     }
+      
+    //   },  { passive: true})
+    // }else{console.log("object");}
   console.log(data.list);
   return (
-    <>
+    <div className=" flex flex-col items-start overflow-auto scroll-smooth whitespace-nowrap	 w-[99%] p-10" id="scrollable">
 
       <Accordion
         allowZeroExpanded
@@ -90,7 +107,7 @@ const Forecast = ({ data }) => {
           </AccordionItem>
         ))}
       </Accordion>
-    </>
+    </div>
   );
 };
 
