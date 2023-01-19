@@ -49,7 +49,7 @@ function App() {
         `${FORECAST_API_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`
       );
       const photoFetch = fetch(
-        `https://api.unsplash.com/search/photos/?query=${city}view&client_id=mX9CmMTe-SWpYa0HqipNsGBnjiatV2xtSVzHNJ10oDs` //fetching unsplash api
+        `https://api.unsplash.com/search/photos/?query=${city}city&client_id=mX9CmMTe-SWpYa0HqipNsGBnjiatV2xtSVzHNJ10oDs` //fetching unsplash api
       );
 
       Promise.all([currentWeatherFetch, forecastFetch,photoFetch]) //order is important, we first fetch current weather
@@ -99,7 +99,7 @@ function App() {
 
         {/* //that means if the current weather is not null show <CurrentWeather /> otherwise dont show anything  */}
         {/* {JSON.stringify(forecast, null, 2)} */}
-        <label className="title mt-[3rem] mb-[3rem] text-[2rem] text-[white]">
+        <label className="title mt-[3rem] mb-[3rem] text-[2rem] font-semibold	 text-[white]">
           Daily Forecast
         </label>
           {forecast && <Forecast data={forecast} />}

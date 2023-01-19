@@ -65,11 +65,11 @@ const Forecast = ({ data }) => {
                     className="icon-small"
                     alt="weather"
                   />
-                  <div className=" text-[1.3rem] text-[#334044]	">
+                  <div className=" text-[1.3rem] text-[#ffffff]	">
                     <label className="description">
                       {item.weather[0].description} &nbsp;
                     </label>
-                    <label className="min-max text-[2rem] text-[#717273]">
+                    <label className="min-max text-[2rem] text-[#ffffff]">
                       {Math.round(item.main.temp_max - 273.15)}°C
                     </label>
                   </div>

@@ -9,7 +9,7 @@ const Search = ({ onSearchChange }) => {
   const loadOptions = (inputValue) => {
     //here we fetch info from the API
     return fetch(
-      `${GEO_API_URL}/cities?minPopulation=500000&namePrefix=${inputValue}`, //${inputValue} is added at the end of the url triggering the correct search every time we type
+      `${GEO_API_URL}/cities?minPopulation=50000&namePrefix=${inputValue}`, //${inputValue} is added at the end of the url triggering the correct search every time we type
       geoApiOptions
     )
       .then((response) => response.json())
@@ -33,23 +33,23 @@ const Search = ({ onSearchChange }) => {
   };
 
   return (
-      <AsyncPaginate
-        className="select w-[100%] oundedr-f"
-        placeholder="Search for city"
-        debounceTimeout={600}
-        value={search}
-        theme={(theme) => ({
-          ...theme,
-          borderRadius: 4,
-          colors: {
-            ...theme.colors,
-            primary25: "rgba(178, 171, 171, 0.3)",
-            primary: "rgba(178, 171, 171, 0.5)",
-          },
-        })}
-        onChange={handleOnChange} // when we select our city =>  onChange()
-        loadOptions={loadOptions} //shows suggestions of cities while we type
-      />
+    <AsyncPaginate
+      className="select w-[100%] oundedr-f"
+      placeholder="Search for city"
+      debounceTimeout={600}
+      value={search}
+      theme={(theme) => ({
+        ...theme,
+        borderRadius: 4,
+        colors: {
+          ...theme.colors,
+          primary25: "rgba(178, 171, 171, 0.3)",
+          primary: "rgba(178, 171, 171, 0.5)",
+        },
+      })}
+      onChange={handleOnChange} // when we select our city =>  onChange()
+      loadOptions={loadOptions} //shows suggestions of cities while we type
+    />
   );
 };
 
