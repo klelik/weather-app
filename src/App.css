@@ -6,9 +6,15 @@ body {
   margin: 0;
   padding: 0 0.3rem;
   font-family: "Roboto" Arial !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
   overflow-x: hidden;
+  /* background: linear-gradient(-45deg, #292f36, #4ecdc4, #ff6b6b, #ffe66d); */
+  /* background-size: 100% ; */
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  animation:  125s ease infinite;
+  /* height: 100vh; */
 }
 
 .App {

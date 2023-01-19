@@ -2,15 +2,15 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css);
 
 body {
-  background: linear-gradient(-45deg, #292f36, #4ecdc4, #ff6b6b, #ffe66d);
-  background-size: 400% 400%;
+  /* background: linear-gradient(-45deg, #292f36, #4ecdc4, #ff6b6b, #ffe66d);
+  background-size: 100% ;
   animation: gradient 25s ease infinite;
-  height: 100vh;
+  height: 100vh; */
 }
 
-@keyframes gradient {
+/* @keyframes gradient {
   0% {
-    background-position: 0% 50%;
+    background-sc: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
@@ -18,7 +18,7 @@ body {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 h1,
 h2,
