@@ -99,7 +99,7 @@ function App() {
           <button
             className="bg-white hover:bg-gray-100 text-gray-800 py-[11px] px-4 rounded shadow "
             onClick={() => {
-              getCoords();
+              getCoords(); 
             }}
           >
             <FaLocationArrow />
@@ -124,7 +124,7 @@ function App() {
 
       {/* <Forecast data={forecast}    /> */}
       <p className=" text-white pt-1 pb-1 text-[10px] ml-14">
-        Made With 💙 by Klement
+        Made With 💙 by Klementt 
       </p>
     </div>
   );
