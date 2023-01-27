@@ -72,3 +72,22 @@ transition: all .3s ease-in-out;
 }
 
 
+/* width */
+.scrol::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.scrol::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;}
+ 
+/* Handle */
+.scrol::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;}
+
+/* Handle on hover */
+.scrol::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

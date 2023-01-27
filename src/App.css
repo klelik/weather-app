@@ -12,21 +12,24 @@ body {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-/* 
+
+  /* 
   animation: grow 25s ease infinite alternate-reverse;
   animation-delay: 2s; */
 }
 
+.App {
+  /* height: 100vh; */
+}
 
-
- @keyframes grow {
+@keyframes grow {
   0% {
     background-size: 100%;
   }
 
   100% {
     background-size: 110%;
-  }  
+  }
 }
 
 .App {

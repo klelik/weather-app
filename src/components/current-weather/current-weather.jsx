@@ -15,10 +15,14 @@ const CurrentWeather = ({ data }) => {
           alt={data.weather[0].description}
         ></img>
       </div>
+      <div className="downRow flex justify-start">
+
       <div className="weatherData">
-        <h1 className="temperature">{Math.round(data.main.temp)}&deg;</h1>
-        <h2 className="description">{data.weather[0].description}</h2>
-        <h3 className="city">{data.city}</h3>
+       <h1 className="temperature">{Math.round(data.main.temp)}&deg;</h1>
+        <div className="descAndCity">
+          <h2 className="description">{data.weather[0].description}</h2>
+          <h3 className="city">{data.city}</h3>
+        </div>
       </div>
       <div className="date">
         <h4 className="month" id="month">
@@ -28,6 +32,9 @@ const CurrentWeather = ({ data }) => {
           {day}
         </h5>
       </div>
+      </div>
+
+
     </article>
     
   );

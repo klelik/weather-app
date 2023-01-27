@@ -42,7 +42,7 @@ const Forecast = ({ data }) => {
     // }else{console.log("object");}
   // console.log(data.list);
   return (
-    <div className=" flex flex-col items-start overflow-auto scroll-smooth whitespace-nowrap	 w-[99%] p-10" id="scrollable">
+    <div className=" scrol flex flex-col items-start overflow-auto scroll-smooth whitespace-nowrap	 w-[99%] p-10" id="scrollable">
 
       <Accordion
         allowZeroExpanded
