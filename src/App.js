@@ -124,7 +124,7 @@ function App() {
 
       {/* <Forecast data={forecast}    /> */}
       <p className=" text-white pt-1 pb-1 text-[10px] ml-14">
-        Made With 💙 by Klementt 
+        Made With 💙 by Klement
       </p>
     </div>
   );
